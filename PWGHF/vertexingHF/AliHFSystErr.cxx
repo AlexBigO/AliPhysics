@@ -3109,13 +3109,13 @@ void AliHFSystErr::InitNonPromptDplustoKpipi2016pPb5TeVML() {
   // Non-prompt D+ systematics in MB pPb 5 TeV (2016) with BDT multi-class selections
   // Responsible F. Grosa
 
-  const int8_t nbins = 9;
-  Float_t xbins[nbins+1]={2,3,4,5,6,8,10,12,16,24};
+  const int8_t nbins = 10;
+  Float_t xbins[nbins+1]={2,3,4,5,6,7,8,10,12,16,24};
   AliInfo(" Settings for non-prompt D+ --> K pi pi, MB pPb collisions at 5 TeV - 2016 runs (LHC16pq) with BDT multi-class selections");
   SetNameTitle("AliHFSystErr","SystErrNonPromptDplustoKpipi2017pp5TeVML");
   // Normalization
   fNorm = new TH1F("fNorm","fNorm",nbins,xbins);
-  for(Int_t i=1;i<=nbins;i++) fNorm->SetBinContent(i,0.021); // 2.1% error on sigmaV0and
+  for(Int_t i=1;i<=nbins;i++) fNorm->SetBinContent(i,0.037); // 3.7% error on sigmaV0and
 
   // Branching ratio
   fBR = new TH1F("fBR","fBR",nbins,xbins);
@@ -3123,33 +3123,26 @@ void AliHFSystErr::InitNonPromptDplustoKpipi2016pPb5TeVML() {
 
   // Tracking efficiency (from prompt analysis)
   fTrackingEff = new TH1F("fTrackingEff","fTrackingEff",nbins,xbins);
-  fTrackingEff->SetBinContent(1,1.00);
-  fTrackingEff->SetBinContent(2,0.035);
-  fTrackingEff->SetBinContent(3,0.045);
-  fTrackingEff->SetBinContent(4,0.05);
-  fTrackingEff->SetBinContent(5,0.06);
-  fTrackingEff->SetBinContent(6,0.06);
-  fTrackingEff->SetBinContent(7,0.065);
-  fTrackingEff->SetBinContent(8,0.065);
-  fTrackingEff->SetBinContent(9,0.065);
+  for(Int_t i=1;i<=7;i++) fTrackingEff->SetBinContent(i,0.037);
+  for(Int_t i=8;i<=nbins;i++) fTrackingEff->SetBinContent(i,0.04);
 
   // Raw yield extraction
   fRawYield = new TH1F("fRawYield","fRawYield",nbins,xbins);
-  fRawYield->SetBinContent(1,1.00);
-  fRawYield->SetBinContent(2,1.00);
-  fRawYield->SetBinContent(3,0.04);
-  fRawYield->SetBinContent(4,0.03);
-  fRawYield->SetBinContent(5,0.03);
+  fRawYield->SetBinContent(1,0.06);
+  fRawYield->SetBinContent(2,0.03);
+  fRawYield->SetBinContent(3,0.03);
+  fRawYield->SetBinContent(4,0.02);
+  fRawYield->SetBinContent(5,0.02);
   fRawYield->SetBinContent(6,0.03);
-  for(Int_t i=7;i<=nbins;i++) fRawYield->SetBinContent(i,0.05);
+  fRawYield->SetBinContent(7,0.02);
+  fRawYield->SetBinContent(8,0.05);
+  fRawYield->SetBinContent(9,0.03);
+  fRawYield->SetBinContent(nbins,0.07);
 
   // Cuts efficiency (from cuts variation)
   fCutsEff = new TH1F("fCutsEff","fCutsEff",nbins,xbins);
-  fCutsEff->SetBinContent(1,1.00);
-  fCutsEff->SetBinContent(2,1.00);
-  fCutsEff->SetBinContent(3,0.10);
-  fCutsEff->SetBinContent(4,0.08);
-  for(Int_t i=5;i<=nbins;i++) fCutsEff->SetBinContent(i,0.05);
+  for(Int_t i=1;i<=2;i++) fCutsEff->SetBinContent(i,0.06);
+  for(Int_t i=2;i<=nbins;i++) fCutsEff->SetBinContent(i,0.03);
 
   // PID efficiency (from prompt analysis)
   fPIDEff = new TH1F("fPIDEff","fPIDEff",nbins,xbins);
@@ -3157,19 +3150,24 @@ void AliHFSystErr::InitNonPromptDplustoKpipi2016pPb5TeVML() {
 
   // MC dN/dpt
   fMCPtShape = new TH1F("fMCPtShape","fMCPtShape",nbins,xbins);
-  for(Int_t i=1;i<=nbins;i++) fMCPtShape->SetBinContent(i,0.01);
+  for(Int_t i=1;i<=3;i++) fMCPtShape->SetBinContent(i,0.025);
+  for(Int_t i=4;i<=5;i++) fMCPtShape->SetBinContent(i,0.02);
+  for(Int_t i=6;i<=7;i++) fMCPtShape->SetBinContent(i,0.015);
+  fMCPtShape->SetBinContent(8,0.01);
+  fMCPtShape->SetBinContent(9,0.00);
+  fMCPtShape->SetBinContent(nbins,0.01);
 
   // FD
   fDataDrivenFD = new TH1F("fDataDrivenFD","fDataDrivenFD",nbins,xbins);
-  fDataDrivenFD->SetBinContent(1,1.00);
-  fDataDrivenFD->SetBinContent(2,1.00);
-  fDataDrivenFD->SetBinContent(3,0.02);
-  fDataDrivenFD->SetBinContent(4,0.02);
-  for(Int_t i=5;i<=nbins;i++) fDataDrivenFD->SetBinContent(i,0.03);
+  fDataDrivenFD->SetBinContent(1,0.02);
+  fDataDrivenFD->SetBinContent(2,0.04);
+  for(Int_t i=3;i<=7;i++) fDataDrivenFD->SetBinContent(i,0.02);
+  for(Int_t i=8;i<=9;i++) fDataDrivenFD->SetBinContent(i,0.03);
+  fDataDrivenFD->SetBinContent(nbins,0.06);
 
   // Correlation between raw yield and FD syst. unc.
   fRawYieldFDCorr = new TH1F("fRawYieldFDCorr","fRawYieldFDCorr",nbins,xbins);
-  for(Int_t i=1;i<=nbins;i++) fRawYieldFDCorr->SetBinContent(i,0.338);
+  for(Int_t i=1;i<=nbins;i++) fRawYieldFDCorr->SetBinContent(i,0.00);
 
   return;
 }
